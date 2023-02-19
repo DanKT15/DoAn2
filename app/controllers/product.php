@@ -2,24 +2,31 @@
 
 class Product extends Controller
 {
+    public $product;
     public $data = [];
+
+    public function __construct()
+    {
+        // add model
+        $this->product = $this->model('ProductModel'); 
+    }
 
     public function index() 
     {
-        $model_product = $this->model('ProductModel'); // add model
-        $this->data['sanpham'] = $model_product->getlist(); // lay methol trong model
+        // lay methol trong model
+        $this->data['sanpham'] = $this->product->getlist(); 
 
        // render views
-       $this->render('Product/ListProduct', $this->data);
+        $this->render('Product/ListProduct', $this->data);
     }
 
     public function listID($id = 0) 
     {
-        $model_product = $this->model('ProductModel'); // add model
-        $this->data['id'] = $model_product->listid($id); // lay methol trong model
+        // lay methol trong model
+        $this->data['id'] = $this->product->listid($id); 
         
        // render views
-       $this->render('Product/listid', $this->data);
+        $this->render('Product/listid', $this->data);
     }
 
 }

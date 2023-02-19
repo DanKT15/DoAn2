@@ -10,6 +10,7 @@ class App
     public function __construct() // goi ham xu ly
     {
         global $routers; // khoi tao bien global
+        global $config;
 
         $this->_routers = new Routers();
 
@@ -65,8 +66,7 @@ class App
             else 
             {
                 $this->errors();
-            }
-            
+            }           
         }
         else 
         {
@@ -94,7 +94,6 @@ class App
             $this->errors();
         }
     
-
         // echo '<pre>';
         // print_r($this->_params);
         // echo '<pre>';
