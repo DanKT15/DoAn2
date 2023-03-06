@@ -9,7 +9,6 @@ class Model extends Database
     {
         $this->db = new Database();
         $this->_table = $_table;
-
     }
 
     public function POST($data=[]) // Tạo dữ liệu mới
