@@ -17,10 +17,27 @@ class Database
         return $query;
     }
 
+    public function select($table, $condition = '')
+    {
+        if (!empty($condition)) {
+            $sql = "SELECT * FROM $table WHERE $condition";
+        }
+        else {
+            $sql = "SELECT * FROM $table";
+        }
+
+        $status = $this->query($sql)->fetchAll(PDO::FETCH_ASSOC); // test ;
+
+        if ($status) {
+            return $status;
+        }
+        return false;
+    }
+
     public function insert($table, $data)
     {
-        if (!empty($data)) 
-        {
+        if (!empty($data)) {
+
             $filedStr = '';
             $valueStr = '';
             foreach ($data as $key => $value) 
@@ -33,12 +50,12 @@ class Database
 
             $sql = "INSERT INTO $table($filedStr) VALUES ($valueStr)";
 
-            $status = $this->query($sql);
+            $status = $this->query($sql)->fetchAll(PDO::FETCH_ASSOC); // test 
 
-            if ($status) 
-            {
+            if ($status) {
                 return true;
             }
+
         }
 
         return false;
@@ -46,54 +63,46 @@ class Database
 
     public function update($table, $data, $condition = '')
     {
-        if (!empty($data)) 
-        {
+        if (!empty($data)) {
+
             $updateStr = '';
-            foreach ($data as $key => $value) 
-            {
+            foreach ($data as $key => $value) {
                 $updateStr .= "$key = '$value',";
             }
 
             $updateStr = rtrim($updateStr, ',');
 
-            if (!empty($condition)) 
-            {
+            if (!empty($condition)) {
                 $sql = "UPDATE $table SET $updateStr WHERE $condition";
             }
-            else 
-            {
+            else {
                 $sql = "UPDATE $table SET $updateStr";
             }
 
-            $status = $this->query($sql);
+            $status = $this->query($sql)->fetchAll(PDO::FETCH_ASSOC); // test ;
 
-            if ($status) 
-            {
+            if ($status) {
                 return true;
             }
-        }
 
+        }
         return false;
     }
 
-    public function delete($table, $condition = '')
+    public function drop($table, $condition = '')
     {
-        if (!empty($condition)) 
-        {
+        if (!empty($condition)) {
             $sql = "DELETE FROM $table WHERE $condition";
         }
-        else 
-        {
+        else {
             $sql = "DELETE FROM $table";
         }
 
-        $status = $this->query($sql);
+        $status = $this->query($sql)->fetchAll(PDO::FETCH_ASSOC); // test ;
 
-        if ($status) 
-        {
+        if ($status) {
             return true;
         }
-
         return false;
     }
 
@@ -103,6 +112,7 @@ class Database
 
 }
 
+?>
 
 
 

@@ -2,6 +2,6 @@
 
 <?php
 
-print_r($id);
+print_r($tkid);
 
 ?>

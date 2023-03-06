@@ -2,35 +2,36 @@
 
 class donhangModel extends Model
 {
-    private $_table = 'donhang';
+    private $table = 'donhang';
+    private $_taikhoan;
 
-    public function POST($data=[]) // Tạo dữ liệu mới
+    public function __construct()
     {
-        $query = $this->db->insert($this->_table, $data)->fetchAll(PDO::FETCH_ASSOC);
-        return $query;
+        $this->_taikhoan = new Model($this->table);
     }
 
     public function GETALL() // Lấy dữ liệu về
     {
-        $query = $this->db->query("SELECT * FROM $this->_table")->fetchAll(PDO::FETCH_ASSOC);
-        return $query;
+        return $this->_taikhoan->GETALL();
     }
 
     public function GETID($condition = '') // Lấy dữ liệu về
     {
-        $query = $this->db->query("SELECT * FROM $this->_table WHERE $condition")->fetchAll(PDO::FETCH_ASSOC);
-        return $query;
+        return $this->_taikhoan->GETID($condition);
+    }
+
+    public function POST($data=[]) // Tạo dữ liệu mới
+    {
+        return $this->_taikhoan->POST($data);
     }
 
     public function PUT($data=[], $condition = '') // Cập nhật dữ liệu
     {
-        $query = $this->db->update($this->_table, $data, $condition = '')->fetchAll(PDO::FETCH_ASSOC);
-        return $query;
+        return $this->_taikhoan->PUT($data, $condition);
     }
 
     public function DELETE($condition = '') // Xóa dữ liệu
     {
-        $query = $this->db->delete($this->_table, $condition = '')->fetchAll(PDO::FETCH_ASSOC);
-        return $query;
+        return $this->_taikhoan->DELETE($condition);
     }
 }
