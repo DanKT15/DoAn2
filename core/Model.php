@@ -42,8 +42,4 @@ class Model extends Database
     }
 }
 
-
-
-
-
-
+?>

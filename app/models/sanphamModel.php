@@ -35,3 +35,5 @@ class sanphamModel extends Model
         return $this->_sanpham->DELETE($condition);
     }
 }
+
+?>

@@ -35,3 +35,5 @@ class ctdhModel extends Model
         return $this->_ctdh->DELETE($condition);
     }
 }
+
+?>

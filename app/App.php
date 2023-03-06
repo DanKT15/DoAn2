@@ -78,11 +78,6 @@ class App
         else {
             $this->errors();
         }
-    
-        // echo '<pre>';
-        // print_r($this->_params);
-        // echo '<pre>';
-        
     }
 
     public function errors($name = '404') 
@@ -90,3 +85,5 @@ class App
         require_once 'errors/'.$name.'.php';
     }
 }
+
+?>

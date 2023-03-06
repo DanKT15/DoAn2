@@ -35,3 +35,5 @@ class nsxModel extends Model
         return $this->_nsx->DELETE($condition);
     }
 }
+
+?>

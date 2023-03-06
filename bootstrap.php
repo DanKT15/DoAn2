@@ -7,12 +7,10 @@ require_once 'configs/database.php';
 require_once 'core/Routers.php';
 require_once 'app/App.php';
 
-if (!empty($config['database'])) 
-{
+if (!empty($config['database'])) {
     $db_config = array_filter($config['database']);
 
-    if (!empty($db_config)) 
-    {
+    if (!empty($db_config)) {
         require_once 'core/Connection.php';
         require_once 'core/Database.php';
 
@@ -26,6 +24,4 @@ if (!empty($config['database']))
 require_once 'core/Model.php';
 require_once 'core/Controller.php';
 
-
-
-
+?>

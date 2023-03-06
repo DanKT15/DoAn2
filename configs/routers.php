@@ -1,4 +1,5 @@
 <?php
+
 // [A-Za-z]
 // [0-9]+
 // [a-zA-Z0-9]+
@@ -13,12 +14,4 @@ $routers['san-pham/.+-(\d)'] = 'product/listID/$1';
 // router web 
 $routers['accout/id/([A-Za-z])'] = 'taikhoan/idtk/$1';
 
-
-
-
-
-
-
-
-
-
+?>

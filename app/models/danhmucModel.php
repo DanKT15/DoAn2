@@ -35,3 +35,5 @@ class danhmucModel extends Model
         return $this->_danhmuc->DELETE($condition);
     }
 }
+
+?>

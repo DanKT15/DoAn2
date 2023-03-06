@@ -35,7 +35,9 @@ class Taikhoan extends Controller
         }
     }
 
-
+    // echo '<pre>';
+    // print_r($this->_params);
+    // echo '<pre>';
 
     // su dung ham post de up data
     // $_data = array(

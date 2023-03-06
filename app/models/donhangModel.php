@@ -35,3 +35,5 @@ class donhangModel extends Model
         return $this->_donhang->DELETE($condition);
     }
 }
+
+?>

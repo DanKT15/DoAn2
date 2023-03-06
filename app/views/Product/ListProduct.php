@@ -2,7 +2,7 @@
 
 <?php
 
-echo '<a href="taikhoan/idtk/B">link id</a><br>';
+echo '<a href="accout/id/A">link id</a><br>';
 
 print_r($tk);
 echo '<hr>';
