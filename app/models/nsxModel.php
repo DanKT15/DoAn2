@@ -3,35 +3,35 @@
 class nsxModel extends Model
 {
     private $table = 'nhasanxuat';
-    private $_taikhoan;
+    private $_nsx;
 
     public function __construct()
     {
-        $this->_taikhoan = new Model($this->table);
+        $this->_nsx = new Model($this->table);
     }
 
     public function GETALL() // Lấy dữ liệu về
     {
-        return $this->_taikhoan->GETALL();
+        return $this->_nsx->GETALL();
     }
 
     public function GETID($condition = '') // Lấy dữ liệu về
     {
-        return $this->_taikhoan->GETID($condition);
+        return $this->_nsx->GETID($condition);
     }
 
     public function POST($data=[]) // Tạo dữ liệu mới
     {
-        return $this->_taikhoan->POST($data);
+        return $this->_nsx->POST($data);
     }
 
     public function PUT($data=[], $condition = '') // Cập nhật dữ liệu
     {
-        return $this->_taikhoan->PUT($data, $condition);
+        return $this->_nsx->PUT($data, $condition);
     }
 
     public function DELETE($condition = '') // Xóa dữ liệu
     {
-        return $this->_taikhoan->DELETE($condition);
+        return $this->_nsx->DELETE($condition);
     }
 }
