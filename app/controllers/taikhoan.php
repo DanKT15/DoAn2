@@ -15,7 +15,15 @@ class Taikhoan extends Controller
         // lay methol trong model
         $this->data['tk'] = $taikhoan->GETALL(); 
         $this->data['sp'] = $sanpham->GETALL(); 
-       // render views
+
+        // test
+        $trangthai = $this->is_logged();
+        if (!empty($trangthai)) {
+            echo "Name user: ".$trangthai;
+        }else {
+            echo "Chua Dang Nhap";
+        }
+        // render views
         $this->render('Product/ListProduct', $this->data);
     }
 

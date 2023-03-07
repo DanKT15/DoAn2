@@ -45,7 +45,7 @@ class Controller
     // --------------------------Role------------------------------------------------------------------------
     // Hàm thiết lập là đã đăng nhập
     public function set_logged($username, $level){
-        session_set('ss_user_token', array(
+        $this->session_set('ss_user_token', array(
             'username' => $username,
             'level' => $level
         ));
@@ -53,18 +53,18 @@ class Controller
     
     // Hàm thiết lập đăng xuất
     public function set_logout(){
-        session_delete('ss_user_token');
+        $this->session_delete('ss_user_token');
     }
     
-    // Hàm kiểm tra trạng thái người dùng đã đăng hập chưa
+    // Hàm kiểm tra trạng thái người dùng đã đăng nhập chưa
     public function is_logged(){
-        $user = session_get('ss_user_token');
+        $user = $this->session_get('ss_user_token');
         return $user;
     }
     
     // Hàm kiểm tra có phải là admin hay không
     public function is_admin(){
-        $user  = is_logged();
+        $user  = $this->is_logged();
         if (!empty($user['level']) && $user['level'] == '1'){
             return true;
         }
@@ -73,13 +73,13 @@ class Controller
 
     // Lấy username người dùng hiện tại
     public function get_current_username(){
-        $user  = is_logged();
+        $user  = $this->is_logged();
         return isset($user['username']) ? $user['username'] : '';
     }
     
     // Lấy level người dùng hiện tại
     public function get_current_level(){
-        $user  = is_logged();
+        $user  = $this->is_logged();
         return isset($user['level']) ? $user['level'] : '';
     }
 
@@ -92,6 +92,12 @@ class Controller
     // Hàm lấy value từ $_GET
     public function input_get($key){
         return isset($_GET[$key]) ? trim($_GET[$key]) : false;
+    }
+
+    // Hàm redirect
+    function redirect($url){
+        header("Location:{$url}");
+        exit();
     }
 
 }
