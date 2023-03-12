@@ -15,9 +15,9 @@ class donhangModel extends Model
         return $this->_donhang->GETALL();
     }
 
-    public function GETID($condition = '') // Lấy dữ liệu về
+    public function GETID($id = '') // Lấy dữ liệu về
     {
-        return $this->_donhang->GETID($condition);
+        return $this->_donhang->GETID('MaDH = '.$id.'');
     }
 
     public function POST($data=[]) // Tạo dữ liệu mới
@@ -25,14 +25,14 @@ class donhangModel extends Model
         return $this->_donhang->POST($data);
     }
 
-    public function PUT($data=[], $condition = '') // Cập nhật dữ liệu
+    public function PUT($data=[], $id = '') // Cập nhật dữ liệu
     {
-        return $this->_donhang->PUT($data, $condition);
+        return $this->_donhang->PUT($data, 'MaDH = '.$id.'');
     }
 
-    public function DELETE($condition = '') // Xóa dữ liệu
+    public function DELETE($id = '') // Xóa dữ liệu
     {
-        return $this->_donhang->DELETE($condition);
+        return $this->_donhang->DELETE('MaDH = '.$id.'');
     }
 }
 

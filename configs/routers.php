@@ -6,7 +6,7 @@
 // [\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}
 
 $routers['default_controller'] = 'taikhoan'; // controller mac dinh
-$routers['default_action'] = 'home'; // action mac dinh
+$routers['default_action'] = 'index'; // action mac dinh
 
 // vi du
 $routers['san-pham/.+-(\d)'] = 'product/listID/$1'; 

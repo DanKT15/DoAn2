@@ -15,9 +15,9 @@ class taikhoanModel extends Model
         return $this->_taikhoan->GETALL();
     }
 
-    public function GETID($condition = '') // Lấy dữ liệu về
+    public function GETID($id = '') // Lấy dữ liệu về
     {
-        return $this->_taikhoan->GETID($condition);
+        return $this->_taikhoan->GETID('MaTK = '.$id.'');
     }
 
     public function POST($data=[]) // Tạo dữ liệu mới
@@ -25,14 +25,14 @@ class taikhoanModel extends Model
         return $this->_taikhoan->POST($data);
     }
 
-    public function PUT($data=[], $condition = '') // Cập nhật dữ liệu
+    public function PUT($data=[], $id = '') // Cập nhật dữ liệu
     {
-        return $this->_taikhoan->PUT($data, $condition);
+        return $this->_taikhoan->PUT($data, 'MaTK = '.$id.'');
     }
 
-    public function DELETE($condition = '') // Xóa dữ liệu
+    public function DELETE($id = '') // Xóa dữ liệu
     {
-        return $this->_taikhoan->DELETE($condition);
+        return $this->_taikhoan->DELETE('MaTK = '.$id.'');
     }
 
 }

@@ -37,7 +37,7 @@ class Model extends Database
 
     public function DELETE($condition = '') // Xóa dữ liệu
     {
-        $query = $this->db->drop($this->$this->_table, $condition);
+        $query = $this->db->drop($this->_table, $condition);
         return $query;
     }
 }

@@ -15,6 +15,20 @@ class Controller
             return false;
         }
     }
+
+    public function controller($controller)
+    {
+        if (file_exists(dir.'/app/controllers/'.$controller.'.php')) {
+            require_once dir.'/app/controllers/'.$controller.'.php';
+            if (class_exists($controller)) {
+                $controller = new $controller();
+                return $controller;
+            }
+        }
+        else {
+            return false;
+        }
+    }
     
     public function render($view, $data = [])
     {
@@ -46,8 +60,8 @@ class Controller
     // Hàm thiết lập là đã đăng nhập
     public function set_logged($username, $level){
         $this->session_set('ss_user_token', array(
-            'username' => $username,
-            'level' => $level
+            'TenDangNhap' => $username,
+            'Quyen' => $level
         ));
     }
     
@@ -65,7 +79,7 @@ class Controller
     // Hàm kiểm tra có phải là admin hay không
     public function is_admin(){
         $user  = $this->is_logged();
-        if (!empty($user['level']) && $user['level'] == '1'){
+        if (!empty($user['Quyen']) && $user['Quyen'] == '1'){
             return true;
         }
         return false;
@@ -74,13 +88,13 @@ class Controller
     // Lấy username người dùng hiện tại
     public function get_current_username(){
         $user  = $this->is_logged();
-        return isset($user['username']) ? $user['username'] : '';
+        return isset($user['TenDangNhap']) ? $user['TenDangNhap'] : '';
     }
     
     // Lấy level người dùng hiện tại
     public function get_current_level(){
         $user  = $this->is_logged();
-        return isset($user['level']) ? $user['level'] : '';
+        return isset($user['Quyen']) ? $user['Quyen'] : '';
     }
 
     // --------------------------Helper------------------------------------------------------------------------

@@ -15,9 +15,9 @@ class sanphamModel extends Model
         return $this->_sanpham->GETALL();
     }
 
-    public function GETID($condition = '') // Lấy dữ liệu về
+    public function GETID($id = '') // Lấy dữ liệu về
     {
-        return $this->_sanpham->GETID($condition);
+        return $this->_sanpham->GETID('MaSP = '.$id.'');
     }
 
     public function POST($data=[]) // Tạo dữ liệu mới
@@ -25,14 +25,14 @@ class sanphamModel extends Model
         return $this->_sanpham->POST($data);
     }
 
-    public function PUT($data=[], $condition = '') // Cập nhật dữ liệu
+    public function PUT($data=[], $id = '') // Cập nhật dữ liệu
     {
-        return $this->_sanpham->PUT($data, $condition);
+        return $this->_sanpham->PUT($data, 'MaSP = '.$id.'');
     }
 
-    public function DELETE($condition = '') // Xóa dữ liệu
+    public function DELETE($id = '') // Xóa dữ liệu
     {
-        return $this->_sanpham->DELETE($condition);
+        return $this->_sanpham->DELETE('MaSP = '.$id.'');
     }
 }
 

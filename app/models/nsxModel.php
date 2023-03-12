@@ -15,9 +15,9 @@ class nsxModel extends Model
         return $this->_nsx->GETALL();
     }
 
-    public function GETID($condition = '') // Lấy dữ liệu về
+    public function GETID($id = '') // Lấy dữ liệu về
     {
-        return $this->_nsx->GETID($condition);
+        return $this->_nsx->GETID('MaNSX = '.$id.'');
     }
 
     public function POST($data=[]) // Tạo dữ liệu mới
@@ -25,14 +25,14 @@ class nsxModel extends Model
         return $this->_nsx->POST($data);
     }
 
-    public function PUT($data=[], $condition = '') // Cập nhật dữ liệu
+    public function PUT($data=[], $id = '') // Cập nhật dữ liệu
     {
-        return $this->_nsx->PUT($data, $condition);
+        return $this->_nsx->PUT($data, 'MaNSX = '.$id.'');
     }
 
-    public function DELETE($condition = '') // Xóa dữ liệu
+    public function DELETE($id = '') // Xóa dữ liệu
     {
-        return $this->_nsx->DELETE($condition);
+        return $this->_nsx->DELETE('MaNSX = '.$id.'');
     }
 }
 

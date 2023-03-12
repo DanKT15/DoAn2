@@ -82,7 +82,7 @@ class App
 
     public function errors($name = '404') 
     {
-        require_once 'errors/'.$name.'.php';
+        require_once 'views/errors/'.$name.'.php';
     }
 }
 

@@ -1,12 +1,11 @@
-<h1>Product view</h1>
+<h1>view</h1>
 
 <?php
 
-echo '<a href="accout/id/A">link id</a><br>';
 
-print_r($tk);
-echo '<hr>';
-print_r($sp);
+echo '<pre>';
+print_r($data);
+echo '<pre>';
+
 
 ?>
-

@@ -1,19 +1,19 @@
 <?php
 
-class Taikhoan extends Controller
+class Donhang extends Controller
 {
-    private $taikhoan;
+    private $donhang;
     public $data = [];
 
     public function __construct()
     {
-        $this->taikhoan = $this->model('taikhoanModel');
+        $this->donhang = $this->model('donhangModel');
     }
 
     public function index() // GETALL
     {
         // lay methol trong model
-        $this->data['tk'] = $this->taikhoan->GETALL(); 
+        $this->data['donhang'] = $this->donhang->GETALL(); 
         // render views
         $this->render('Product/ListProduct', $this->data);
     }
@@ -23,7 +23,7 @@ class Taikhoan extends Controller
         if (!empty($id)) {
               
             // lay methol trong model
-            $this->data['tk'] = $this->taikhoan->GETID($id); 
+            $this->data['donhang'] = $this->donhang->GETID($id); 
             // render views
             $this->render('Product/ListProduct', $this->data);
 
@@ -44,7 +44,7 @@ class Taikhoan extends Controller
                 "Pass"=> $_POST['a'],
                 "Quyen"=> $_POST['a']
             );
-            $query = $this->taikhoan->POST($_data);
+            $query = $this->donhang->POST($_data);
             if ($query) {
                 // load trang
                 // $this->redirect($url);
@@ -67,7 +67,7 @@ class Taikhoan extends Controller
                     "Pass"=> $_POST['a'],
                     "Quyen"=> $_POST['a']
                 );
-                $query = $this->taikhoan->PUT($_data, $id);
+                $query = $this->donhang->PUT($_data, $id);
                 if ($query) {
                     // load trang
                     // $this->redirect($url);
@@ -78,7 +78,7 @@ class Taikhoan extends Controller
             $this->render('errors/404');
         }
         // lay data tu row can sua de hien thi 
-        $this->data['tk'] = $this->taikhoan->GETID($id);
+        $this->data['donhang'] = $this->donhang->GETID($id);
         // render views form
         $this->render('Product/ListProduct', $this->data);
     }
@@ -88,7 +88,7 @@ class Taikhoan extends Controller
         if (!empty($id)) {
               
             // lay methol trong model
-            $query = $this->taikhoan->DELETE($id); 
+            $query = $this->donhang->DELETE($id); 
             // load trang
             // $this->redirect($url);            
 

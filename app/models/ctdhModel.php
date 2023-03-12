@@ -15,9 +15,9 @@ class ctdhModel extends Model
         return $this->_ctdh->GETALL();
     }
 
-    public function GETID($condition = '') // Lấy dữ liệu về
+    public function GETID($id = '') // Lấy dữ liệu về
     {
-        return $this->_ctdh->GETID($condition);
+        return $this->_ctdh->GETID('MaCTDH = '.$id.'');
     }
 
     public function POST($data=[]) // Tạo dữ liệu mới
@@ -25,14 +25,14 @@ class ctdhModel extends Model
         return $this->_ctdh->POST($data);
     }
 
-    public function PUT($data=[], $condition = '') // Cập nhật dữ liệu
+    public function PUT($data=[], $id = '') // Cập nhật dữ liệu
     {
-        return $this->_ctdh->PUT($data, $condition);
+        return $this->_ctdh->PUT($data, 'MaCTDH = '.$id.'');
     }
 
-    public function DELETE($condition = '') // Xóa dữ liệu
+    public function DELETE($id = '') // Xóa dữ liệu
     {
-        return $this->_ctdh->DELETE($condition);
+        return $this->_ctdh->DELETE('MaCTDH = '.$id.'');
     }
 }
 
