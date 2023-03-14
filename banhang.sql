@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th3 07, 2023 lúc 01:41 PM
+-- Thời gian đã tạo: Th3 14, 2023 lúc 04:29 AM
 -- Phiên bản máy phục vụ: 10.4.27-MariaDB
 -- Phiên bản PHP: 8.2.0
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `shopdb`
+-- Cơ sở dữ liệu: `banhang`
 --
 
 -- --------------------------------------------------------
@@ -31,17 +31,9 @@ CREATE TABLE `chitietdonhang` (
   `MaCTDH` int(11) NOT NULL,
   `MaSP` int(11) NOT NULL,
   `MaDH` int(11) NOT NULL,
-  `SoLuong` int(11) NOT NULL
+  `SoLuong` int(11) NOT NULL,
+  `Size` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Đang đổ dữ liệu cho bảng `chitietdonhang`
---
-
-INSERT INTO `chitietdonhang` (`MaCTDH`, `MaSP`, `MaDH`, `SoLuong`) VALUES
-(1, 1, 1, 2),
-(2, 2, 1, 3),
-(3, 1, 2, 3);
 
 -- --------------------------------------------------------
 
@@ -55,13 +47,6 @@ CREATE TABLE `danhmuc` (
   `MoTa` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Đang đổ dữ liệu cho bảng `danhmuc`
---
-
-INSERT INTO `danhmuc` (`MaDM`, `TenDM`, `MoTa`) VALUES
-(1, 'Trang Phục Thể Thao', 'Trang phục dành cho các hoạt động thể thao');
-
 -- --------------------------------------------------------
 
 --
@@ -70,40 +55,36 @@ INSERT INTO `danhmuc` (`MaDM`, `TenDM`, `MoTa`) VALUES
 
 CREATE TABLE `donhang` (
   `MaDH` int(11) NOT NULL,
-  `TenDangNhap` varchar(100) DEFAULT NULL,
+  `MaTK` int(11) DEFAULT NULL,
   `TenNN` varchar(100) DEFAULT NULL,
   `DiaChi` varchar(250) DEFAULT NULL,
   `SDT` int(11) DEFAULT NULL,
   `NgayMua` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `GhiChu` text DEFAULT NULL,
-  `TrangThai` int(11) NOT NULL DEFAULT 0
+  `TenTT` varchar(250) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Đang đổ dữ liệu cho bảng `donhang`
---
-
-INSERT INTO `donhang` (`MaDH`, `TenDangNhap`, `TenNN`, `DiaChi`, `SDT`, `NgayMua`, `GhiChu`, `TrangThai`) VALUES
-(1, 'NguyenA', NULL, NULL, NULL, '2023-02-22 15:21:53', 'Hẻm A ', 0),
-(2, NULL, 'Nguyễn Văn B', 'ABFG/250/1', 762914444, '2023-03-02 09:15:45', 'Giao hàng vào buổi trưa', 0);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `nhasanxuat`
+-- Cấu trúc bảng cho bảng `nhacungcap`
 --
 
-CREATE TABLE `nhasanxuat` (
-  `MaNSX` int(11) NOT NULL,
-  `TenNSX` varchar(100) NOT NULL
+CREATE TABLE `nhacungcap` (
+  `MaNCC` int(11) NOT NULL,
+  `TenNCC` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+-- --------------------------------------------------------
+
 --
--- Đang đổ dữ liệu cho bảng `nhasanxuat`
+-- Cấu trúc bảng cho bảng `phanloai`
 --
 
-INSERT INTO `nhasanxuat` (`MaNSX`, `TenNSX`) VALUES
-(1, 'China');
+CREATE TABLE `phanloai` (
+  `MaLoai` int(11) NOT NULL,
+  `TenLoai` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -113,24 +94,18 @@ INSERT INTO `nhasanxuat` (`MaNSX`, `TenNSX`) VALUES
 
 CREATE TABLE `sanpham` (
   `MaSP` int(11) NOT NULL,
-  `MaNSX` int(11) NOT NULL,
+  `MaNCC` int(11) NOT NULL,
   `MaDM` int(11) NOT NULL,
+  `MaLoai` int(11) NOT NULL,
   `TenSP` varchar(100) NOT NULL,
   `Size` varchar(100) DEFAULT NULL,
-  `ChatLieu` varchar(100) DEFAULT NULL,
-  `ThongTin` text DEFAULT NULL,
+  `MauSac` varchar(100) DEFAULT NULL,
+  `MotaSP` text DEFAULT NULL,
+  `TinhTrang` varchar(250) DEFAULT NULL,
   `HinhAnh` varchar(250) NOT NULL,
   `SoLuongSP` int(11) NOT NULL,
   `GiaSP` decimal(12,2) NOT NULL DEFAULT 0.00
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Đang đổ dữ liệu cho bảng `sanpham`
---
-
-INSERT INTO `sanpham` (`MaSP`, `MaNSX`, `MaDM`, `TenSP`, `Size`, `ChatLieu`, `ThongTin`, `HinhAnh`, `SoLuongSP`, `GiaSP`) VALUES
-(1, 1, 1, 'Áo thun co dãn', '40, 50, 60', 'Cotton', 'Chưa cập nhật', 'Chưa cập nhật', 15, '150000.00'),
-(2, 1, 1, 'Quần thun co dãn', '80, 90, 100', 'Polime co dãn', 'Chưa Cập nhật', '', 5, '70000.00');
 
 -- --------------------------------------------------------
 
@@ -139,7 +114,7 @@ INSERT INTO `sanpham` (`MaSP`, `MaNSX`, `MaDM`, `TenSP`, `Size`, `ChatLieu`, `Th
 --
 
 CREATE TABLE `taikhoan` (
-  `TenDangNhap` varchar(100) NOT NULL,
+  `MaTK` int(11) NOT NULL,
   `HoTen` varchar(100) NOT NULL,
   `DiaChi` varchar(250) NOT NULL,
   `SDT` int(11) NOT NULL,
@@ -148,13 +123,16 @@ CREATE TABLE `taikhoan` (
   `Quyen` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+-- --------------------------------------------------------
+
 --
--- Đang đổ dữ liệu cho bảng `taikhoan`
+-- Cấu trúc bảng cho bảng `trangthai`
 --
 
-INSERT INTO `taikhoan` (`TenDangNhap`, `HoTen`, `DiaChi`, `SDT`, `Email`, `Pass`, `Quyen`) VALUES
-('NguyenA', 'Nguyễn Văn A', 'ABC/2/N', 903971381, 'dankt1515@gmail.com', 'dankt15022002', 0),
-('NguyenB', 'Nguyễn Văn B', 'ABC/2/N', 903971381, 'dankt2515@gmail.com', 'dankt15022000', 0);
+CREATE TABLE `trangthai` (
+  `TenTT` varchar(250) NOT NULL,
+  `MoTa` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -179,27 +157,41 @@ ALTER TABLE `danhmuc`
 --
 ALTER TABLE `donhang`
   ADD PRIMARY KEY (`MaDH`),
-  ADD KEY `TenDangNhap` (`TenDangNhap`);
+  ADD KEY `MaTK` (`MaTK`),
+  ADD KEY `TenTT` (`TenTT`);
 
 --
--- Chỉ mục cho bảng `nhasanxuat`
+-- Chỉ mục cho bảng `nhacungcap`
 --
-ALTER TABLE `nhasanxuat`
-  ADD PRIMARY KEY (`MaNSX`);
+ALTER TABLE `nhacungcap`
+  ADD PRIMARY KEY (`MaNCC`);
+
+--
+-- Chỉ mục cho bảng `phanloai`
+--
+ALTER TABLE `phanloai`
+  ADD PRIMARY KEY (`MaLoai`);
 
 --
 -- Chỉ mục cho bảng `sanpham`
 --
 ALTER TABLE `sanpham`
   ADD PRIMARY KEY (`MaSP`),
-  ADD KEY `MaNSX` (`MaNSX`),
+  ADD KEY `MaNCC` (`MaNCC`),
+  ADD KEY `MaLoai` (`MaLoai`),
   ADD KEY `MaDM` (`MaDM`);
 
 --
 -- Chỉ mục cho bảng `taikhoan`
 --
 ALTER TABLE `taikhoan`
-  ADD PRIMARY KEY (`TenDangNhap`);
+  ADD PRIMARY KEY (`MaTK`);
+
+--
+-- Chỉ mục cho bảng `trangthai`
+--
+ALTER TABLE `trangthai`
+  ADD PRIMARY KEY (`TenTT`);
 
 --
 -- AUTO_INCREMENT cho các bảng đã đổ
@@ -209,31 +201,43 @@ ALTER TABLE `taikhoan`
 -- AUTO_INCREMENT cho bảng `chitietdonhang`
 --
 ALTER TABLE `chitietdonhang`
-  MODIFY `MaCTDH` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `MaCTDH` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT cho bảng `danhmuc`
 --
 ALTER TABLE `danhmuc`
-  MODIFY `MaDM` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `MaDM` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT cho bảng `donhang`
 --
 ALTER TABLE `donhang`
-  MODIFY `MaDH` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `MaDH` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `nhasanxuat`
+-- AUTO_INCREMENT cho bảng `nhacungcap`
 --
-ALTER TABLE `nhasanxuat`
-  MODIFY `MaNSX` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `nhacungcap`
+  MODIFY `MaNCC` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT cho bảng `phanloai`
+--
+ALTER TABLE `phanloai`
+  MODIFY `MaLoai` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT cho bảng `sanpham`
 --
 ALTER TABLE `sanpham`
-  MODIFY `MaSP` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `MaSP` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT cho bảng `taikhoan`
+--
+ALTER TABLE `taikhoan`
+  MODIFY `MaTK` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
@@ -250,14 +254,16 @@ ALTER TABLE `chitietdonhang`
 -- Các ràng buộc cho bảng `donhang`
 --
 ALTER TABLE `donhang`
-  ADD CONSTRAINT `donhang_ibfk_1` FOREIGN KEY (`TenDangNhap`) REFERENCES `taikhoan` (`TenDangNhap`);
+  ADD CONSTRAINT `donhang_ibfk_1` FOREIGN KEY (`MaTK`) REFERENCES `taikhoan` (`MaTK`),
+  ADD CONSTRAINT `donhang_ibfk_2` FOREIGN KEY (`TenTT`) REFERENCES `trangthai` (`TenTT`);
 
 --
 -- Các ràng buộc cho bảng `sanpham`
 --
 ALTER TABLE `sanpham`
-  ADD CONSTRAINT `sanpham_ibfk_1` FOREIGN KEY (`MaNSX`) REFERENCES `nhasanxuat` (`MaNSX`),
-  ADD CONSTRAINT `sanpham_ibfk_2` FOREIGN KEY (`MaDM`) REFERENCES `danhmuc` (`MaDM`);
+  ADD CONSTRAINT `sanpham_ibfk_1` FOREIGN KEY (`MaNCC`) REFERENCES `nhacungcap` (`MaNCC`),
+  ADD CONSTRAINT `sanpham_ibfk_2` FOREIGN KEY (`MaLoai`) REFERENCES `phanloai` (`MaLoai`),
+  ADD CONSTRAINT `sanpham_ibfk_3` FOREIGN KEY (`MaDM`) REFERENCES `danhmuc` (`MaDM`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
