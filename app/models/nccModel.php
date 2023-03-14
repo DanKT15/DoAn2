@@ -1,38 +1,38 @@
 <?php
 
-class nsxModel extends Model
+class nccModel extends Model
 {
-    private $table = 'nhasanxuat';
-    private $_nsx;
+    private $table = 'nhacungcap';
+    private $_ncc;
 
     public function __construct()
     {
-        $this->_nsx = new Model($this->table);
+        $this->_ncc = new Model($this->table);
     }
 
     public function GETALL() // Lấy dữ liệu về
     {
-        return $this->_nsx->GETALL();
+        return $this->_ncc->GETALL();
     }
 
     public function GETID($id = '') // Lấy dữ liệu về
     {
-        return $this->_nsx->GETID('MaNSX = '.$id.'');
+        return $this->_ncc->GETID('MaNCC = '.$id.'');
     }
 
     public function POST($data=[]) // Tạo dữ liệu mới
     {
-        return $this->_nsx->POST($data);
+        return $this->_ncc->POST($data);
     }
 
     public function PUT($data=[], $id = '') // Cập nhật dữ liệu
     {
-        return $this->_nsx->PUT($data, 'MaNSX = '.$id.'');
+        return $this->_ncc->PUT($data, 'MaNCC = '.$id.'');
     }
 
     public function DELETE($id = '') // Xóa dữ liệu
     {
-        return $this->_nsx->DELETE('MaNSX = '.$id.'');
+        return $this->_ncc->DELETE('MaNCC = '.$id.'');
     }
 }
 

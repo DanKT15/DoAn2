@@ -1,21 +1,23 @@
 <?php
 
-class Nsx extends Controller
+class Trangthai extends Controller
 {
-    private $nsx;
+    private $trangthai;
     public $data = [];
 
     public function __construct()
     {
-        $this->nsx = $this->model('nsxModel');
+        $this->trangthai = $this->model('trangthaiModel');
     }
 
     public function index() // GETALL
     {
         // lay methol trong model
-        $this->data['nsx'] = $this->nsx->GETALL(); 
+        $this->data['trangthai'] = $this->trangthai->GETALL(); 
         // render views
-        $this->render('Product/ListProduct', $this->data);
+        $this->render('admin/header');
+        $this->render('admin/trangthai/list-tt', $this->data);
+        $this->render('admin/footer');
     }
 
     public function getid($id = '') // GETID 
@@ -23,7 +25,7 @@ class Nsx extends Controller
         if (!empty($id)) {
               
             // lay methol trong model
-            $this->data['nsx'] = $this->nsx->GETID($id); 
+            $this->data['trangthai'] = $this->trangthai->GETID($id); 
             // render views
             $this->render('Product/ListProduct', $this->data);
 
@@ -44,14 +46,16 @@ class Nsx extends Controller
                 "Pass"=> $_POST['a'],
                 "Quyen"=> $_POST['a']
             );
-            $query = $this->nsx->POST($_data);
+            $query = $this->trangthai->POST($_data);
             if ($query) {
                 // load trang
                 // $this->redirect($url);
             }
         }
         // render views form
-        $this->render('Product/ListProduct', $this->data);
+        $this->render('admin/header');
+        $this->render('admin/trangthai/add-tt');
+        $this->render('admin/footer');
     }
 
     public function suatk($id = '') // Ham su dung gia tri param
@@ -67,7 +71,7 @@ class Nsx extends Controller
                     "Pass"=> $_POST['a'],
                     "Quyen"=> $_POST['a']
                 );
-                $query = $this->nsx->PUT($_data, $id);
+                $query = $this->trangthai->PUT($_data, $id);
                 if ($query) {
                     // load trang
                     // $this->redirect($url);
@@ -78,7 +82,7 @@ class Nsx extends Controller
             $this->render('errors/404');
         }
         // lay data tu row can sua de hien thi 
-        $this->data['nsx'] = $this->nsx->GETID($id);
+        $this->data['trangthai'] = $this->trangthai->GETID($id);
         // render views form
         $this->render('Product/ListProduct', $this->data);
     }
@@ -88,7 +92,7 @@ class Nsx extends Controller
         if (!empty($id)) {
               
             // lay methol trong model
-            $query = $this->nsx->DELETE($id); 
+            $query = $this->trangthai->DELETE($id); 
             // load trang
             // $this->redirect($url);            
 

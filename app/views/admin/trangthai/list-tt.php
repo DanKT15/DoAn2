@@ -16,6 +16,8 @@
                             Tạo mới Trạng Thái</a>
                         </div>
                     </div>
+
+
                     <table class="table table-hover table-bordered" id="sampleTable">
                         <thead>
                             <tr>
@@ -24,19 +26,29 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Bàn ăn gỗ Theresa</td>
-                                <td>/img-sanpham/theresa.jpg//img-sanpham/theresa.jpg</td>
-                                <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
-                                        onclick="myFunction(this)"><i class="fas fa-trash-alt"></i> 
-                                    </button>
-                                    <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal"
-                                    data-target="#ModalUP"><i class="fas fa-edit"></i></button>
-                                   
-                                </td>
-                            </tr>
+
+                            <?php
+                                foreach ($trangthai as $key => $value) {
+                                    echo '
+                                    <tr>
+                                        <td>'.$value['TenTT'].'</td>
+                                        <td>'.$value['MoTa'].'</td>
+                                        <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
+                                                onclick="myFunction(this)"><i class="fas fa-trash-alt"></i> 
+                                            </button>
+                                            <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal"
+                                            data-target="#ModalUP"><i class="fas fa-edit"></i></button>
+                                        
+                                        </td>
+                                    </tr>
+                                    ';
+                                }
+                            ?>
+
                         </tbody>
                     </table>
+
+
                 </div>
             </div>
         </div>

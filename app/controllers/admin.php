@@ -123,7 +123,7 @@ class Admin extends Controller
 
     public function provider($action = 'index', $id = '') // nhà cung cấp
     {
-        $controller = $this->controller('nhacungcap');
+        $controller = $this->controller('Ncc');
         if (!empty($action)) {
             switch ($action) {    
                 case "index" : $controller->index(); break;
@@ -214,6 +214,67 @@ class Admin extends Controller
         }
     }
 
+    public function status($action = 'index', $id = '') // trạng thái
+    {
+        $controller = $this->controller('trangthai');
+        if (!empty($action)) {
+            switch ($action) {    
+                case "index" : $controller->index(); break;
+                case "get": 
+                    if (!empty($id)) {
+                        $controller->getid($id); break;
+                    } else {
+                        break;
+                    }
+                case "post": $controller->themtk(); break;
+                case "put": 
+                    if (!empty($id)) {
+                        $controller->suatk($id); break;
+                    } else {
+                        break;
+                    }                    
+                case "delete": 
+                    if (!empty($id)) {
+                        $controller->xoatk($id); break;
+                    } else {
+                        break;
+                    }
+            }        
+        } else {
+            $this->render('errors/404');
+        }
+    }
+
+    public function variety($action = 'index', $id = '') // phân loại
+    {
+        $controller = $this->controller('phanloai');
+        if (!empty($action)) {
+            switch ($action) {    
+                case "index" : $controller->index(); break;
+                case "get": 
+                    if (!empty($id)) {
+                        $controller->getid($id); break;
+                    } else {
+                        break;
+                    }
+                case "post": $controller->themtk(); break;
+                case "put": 
+                    if (!empty($id)) {
+                        $controller->suatk($id); break;
+                    } else {
+                        break;
+                    }                    
+                case "delete": 
+                    if (!empty($id)) {
+                        $controller->xoatk($id); break;
+                    } else {
+                        break;
+                    }
+            }        
+        } else {
+            $this->render('errors/404');
+        }
+    }
 }
 
 ?>

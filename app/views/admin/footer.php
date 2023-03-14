@@ -1,4 +1,4 @@
-<script src="../assets/js/jquery-3.2.1.min.js"></script>
+<script src="../public/assets/js/jquery-3.2.1.min.js"></script>
   <!--===============================================================================================-->
   <script src="js/popper.min.js"></script>
   <script src="https://unpkg.com/boxicons@latest/dist/boxicons.js"></script>
