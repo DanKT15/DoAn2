@@ -121,9 +121,9 @@ class Admin extends Controller
         }
     }
 
-    public function producer($action = 'index', $id = '') // nhà sản xuất
+    public function provider($action = 'index', $id = '') // nhà cung cấp
     {
-        $controller = $this->controller('nsx');
+        $controller = $this->controller('nhacungcap');
         if (!empty($action)) {
             switch ($action) {    
                 case "index" : $controller->index(); break;
